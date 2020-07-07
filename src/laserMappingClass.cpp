@@ -4,7 +4,7 @@
 
 #include "laserMappingClass.h"
 
-void LaserMappingClass::init(void){
+void LaserMappingClass::init(double map_resolution){
 	//init map
 	//init can have real object, but future added block does not need
 	for(int i=0;i<LASER_CELL_RANGE_HORIZONTAL*2+1;i++){
@@ -28,7 +28,7 @@ void LaserMappingClass::init(void){
 	map_depth = LASER_CELL_RANGE_HORIZONTAL*2+1;
 
 	//downsampling size
-	downSizeFilter.setLeafSize(0.5, 0.5, 0.5);
+	downSizeFilter.setLeafSize(map_resolution, map_resolution, map_resolution);
 }
 
 void LaserMappingClass::addWidthCellNegative(void){
@@ -202,3 +202,4 @@ pcl::PointCloud<pcl::PointXYZI>::Ptr LaserMappingClass::getMap(void){
 LaserMappingClass::LaserMappingClass(){
 
 }
+
